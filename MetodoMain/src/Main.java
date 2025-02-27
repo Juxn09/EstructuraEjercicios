@@ -8,5 +8,8 @@ public class Main {
         System.out.println(c.getContenido());
         Caja<Double> c2 = new Caja<>(20.00);
         System.out.println(c2.getContenido());
+
+        Caja<Perro> c3 = new Caja<>(new Perro("Carlos"));
+        System.out.println(c3.getContenido());
     }
 }
