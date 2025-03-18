@@ -17,9 +17,9 @@ public class Pila<T> extends ListaDoble<T> {
         return super.remove();
     }
 
-    public  T push(T dato){
-      super.remove();
-      return dato;
+    public T push(T dato) {
+        super.addFirst(dato);
+        return dato;
     }
 
     public int search(T dato){

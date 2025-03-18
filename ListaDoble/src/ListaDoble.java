@@ -23,8 +23,8 @@ public class ListaDoble<T> {
         nodo.setAnt(head);
         cantidadNodos++;
     }
-    // add (Int, E)
 
+    // add (Int, E)
     public void addIndex(int indice, T dato) {
         Nodo<T> nodo = new Nodo();
         nodo.setDato(dato);
@@ -158,5 +158,6 @@ public class ListaDoble<T> {
         return aux;
 
     }
+
 
 }
