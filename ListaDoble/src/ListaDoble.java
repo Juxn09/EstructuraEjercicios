@@ -54,7 +54,7 @@ public class ListaDoble<T> {
         cantidadNodos++;
     }
 
-    // addlast
+    // addLast
     public void addLast(T dato) {
         Nodo<T> nodo = new Nodo();
         nodo.setDato(dato);
@@ -66,8 +66,8 @@ public class ListaDoble<T> {
         anterior.setSig(nodo);
         cantidadNodos++;
     }
-    // Clear
 
+    // Clear
     public void clear(T dato) {
         Nodo<T> nodo = tail;
         Nodo<T> aux = nodo.getAnt();
@@ -84,7 +84,7 @@ public class ListaDoble<T> {
         cantidadNodos = 0;
     }
 
-    //contains
+    // contains
     public boolean contains(T dato) {
         Nodo<T> nodo = head;
         for (int i = 0; i < cantidadNodos; i++) {
@@ -97,7 +97,6 @@ public class ListaDoble<T> {
     }
 
     // Element
-
     public T element() {
         return head.getSig().getDato();
     }
@@ -127,37 +126,95 @@ public class ListaDoble<T> {
         return tail.getAnt().getDato();
     }
 
-    // IndexOff
-    public int indexOf(T dato){
+    // IndexOf
+    public int indexOf(T dato) {
         Nodo<T> nodo = head;
-        int aux= -1;
-        for (int i = 0; i <cantidadNodos; i++) {
-            nodo= nodo.getSig();
-            if(Objects.equals(nodo.getDato(), dato)){
+        int aux = -1;
+        for (int i = 0; i < cantidadNodos; i++) {
+            nodo = nodo.getSig();
+            if (Objects.equals(nodo.getDato(), dato)) {
                 aux = i;
                 break;
             }
-
-        }
-        if (aux==-1){
-            return -1;
         }
         return aux;
     }
-    public T remove(){
-        T aux= head.getSig().getDato();
-        Nodo<T> nodo= head.getSig();
-        Nodo<T> actual= nodo.getSig();
-        head.setSig(actual);
-        actual.setAnt(head);
-        nodo.setAnt(null);
-        nodo.setSig(null);
-        nodo.setDato(null);
-        nodo= null;
+
+    // remove(int)
+    public T remove(int index) {
+        if (index < 0 || index >= cantidadNodos) {
+            return null;
+        }
+        Nodo<T> nodo = head;
+        for (int i = 0; i <= index; i++) {
+            nodo = nodo.getSig();
+        }
+        nodo.getAnt().setSig(nodo.getSig());
+        nodo.getSig().setAnt(nodo.getAnt());
         cantidadNodos--;
-        return aux;
-
+        return nodo.getDato();
     }
 
+    // remove(Object)
+    public boolean remove(T dato) {
+        Nodo<T> nodo = head;
+        while (nodo != null) {
+            if (Objects.equals(nodo.getDato(), dato)) {
+                nodo.getAnt().setSig(nodo.getSig());
+                nodo.getSig().setAnt(nodo.getAnt());
+                cantidadNodos--;
+                return true;
+            }
+            nodo = nodo.getSig();
+        }
+        return false;
+    }
 
+    // removeFirstOccurrence
+    public boolean removeFirstOccurrence(T dato) {
+        return remove(dato);
+    }
+
+    // removeLastOccurrence
+    public boolean removeLastOccurrence(T dato) {
+        Nodo<T> nodo = tail;
+        while (nodo != head) {
+            if (Objects.equals(nodo.getDato(), dato)) {
+                nodo.getAnt().setSig(nodo.getSig());
+                nodo.getSig().setAnt(nodo.getAnt());
+                cantidadNodos--;
+                return true;
+            }
+            nodo = nodo.getAnt();
+        }
+        return false;
+    }
+
+    // set(int, E)
+    public void set(int index, T dato) {
+        if (index < 0 || index >= cantidadNodos) {
+            return;
+        }
+        Nodo<T> nodo = head;
+        for (int i = 0; i <= index; i++) {
+            nodo = nodo.getSig();
+        }
+        nodo.setDato(dato);
+    }
+
+    // size()
+    public int size() {
+        return cantidadNodos;
+    }
+
+    // toArray()
+    public Object[] toArray() {
+        Object[] array = new Object[cantidadNodos];
+        Nodo<T> nodo = head.getSig();
+        for (int i = 0; i < cantidadNodos; i++) {
+            array[i] = nodo.getDato();
+            nodo = nodo.getSig();
+        }
+        return array;
+    }
 }
