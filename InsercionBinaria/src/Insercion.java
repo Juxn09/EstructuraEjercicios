@@ -59,6 +59,10 @@ public class  Insercion<T extends Comparable<T>> {
         System.out.println();
     }
 
+//    public Nodo<T> busquedaNodo(T dato){
+//
+//    }
+
     public static void main(String[] args) {
         Insercion<Integer> arbol = new Insercion<>();
 
